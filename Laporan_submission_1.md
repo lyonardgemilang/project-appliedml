@@ -34,9 +34,9 @@ Bagian laporan ini mencakup:
 - Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 [<a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021" Air Quality Index in Jakarta>].
+Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 [<a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021">Air Quality Index in Jakarta</a>].
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
+### Variabel-variabel pada Air Quality Index in Jakarta dataset adalah sebagai berikut:
 - tanggal : Tanggal pencatatan kualitas udara
 - stasiun : Lokasi stasiun pemantauan
 - pm25 : Konsentrasi materi partikulat dengan diameter 2,5 mikrometer atau kurang (PM2.5), diukur dalam mikrogram per meter kubik (µg/m³).
@@ -51,6 +51,7 @@ Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang 
 
 ### Eksplorasi Data
 - Boxplot
+![EDA Image](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/path/to/CMLR_AT.png)
 - Kualitas udara berdasarkan stasiun
 - Korelasi antar fitur
 - Tren Historis
