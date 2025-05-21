@@ -20,59 +20,63 @@ Bagian laporan ini mencakup:
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah latar belakang:
-- Bagaimana model machine learning dapat mengatasi masalah polusi udara di Jakarta?
-- 
-- Pernyataan Masalah n
+- Bagaimana membangun model machine learning untuk memprediksi kualitas udara berdasarkan parameter pencemar udara?
+- Algoritma apa yang paling efektif untuk memodelkan prediksi kualitas udara dengan akurasi tinggi?
 
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Menghasilkan model prediktif yang mampu mengklasifikasikan kualitas udara dari data polutan yang tersedia.
+- Mengevaluasi dan membandingkan performa dua model machine learning dalam mengklasifikasi kualitas udara.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+### Solution statements
+- Menggunakan dau algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan f1-score
+- Melakukan hyperparameter tuning pada kedua model untuk mengoptimalisasi performa.
+- Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025.
-
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 [<a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021" Air Quality Index in Jakarta>].
 
 ### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- tanggal : The date when the AQI measurement was recorded.
-- stasiun : The name or identifier of the monitoring station where the measurement was taken.
-- pm25 : The concentration of particulate matter with a diameter of 2.5 micrometers or less (PM2.5), measured in micrograms per cubic meter (µg/m³).
-- pm10 : The concentration of particulate matter with a diameter of 10 micrometers or less (PM10), measured in micrograms per cubic meter (µg/m³).
-- so2 : The concentration of sulfur dioxide (SO2), measured in parts per million (ppm).
-- co : The concentration of carbon monoxide (CO), measured in parts per million (ppm).
-- o3 : The concentration of ozone (O3), measured in parts per million (ppm).
-- no2 : The concentration of nitrogen dioxide (NO2), measured in parts per million (ppm).
-- max : The maximum value recorded among the pollutants for that particular date and station. This value represents the highest concentration among PM25, PM10, SO2, CO, O3, and NO2.
-- critical: The pollutant that had the highest concentration for that date and station.
-- category : The air quality category based on the 'max' value that describes the air quality level.
+- tanggal : Tanggal pencatatan kualitas udara
+- stasiun : Lokasi stasiun pemantauan
+- pm25 : Konsentrasi materi partikulat dengan diameter 2,5 mikrometer atau kurang (PM2.5), diukur dalam mikrogram per meter kubik (µg/m³).
+- pm10 : Konsentrasi materi partikulat dengan diameter 10 mikrometer atau kurang (PM10), diukur dalam mikrogram per meter kubik (µg/m³).
+- so2 : Konsentrasi sulfur dioksida (SO2), diukur dalam bagian per juta (ppm).
+- co : Konsentrasi karbon monoksida, diukur dalam bagian per juta (ppm).
+- o3 : Konsentrasi ozon (O3), diukur dalam bagian per juta (ppm).
+- no2 : Konsentrasi nitrogen dioksida (NO2), diukur dalam bagian per juta (ppm).
+- max : Nilai maksimum yang tercatat di antara polutan untuk tanggal dan stasiun tertentu. Nilai ini mewakili konsentrasi tertinggi di antara PM25, PM10, SO2, CO, O3, dan NO2.
+- critical: Polutan yang mempunyai konsentrasi tertinggi pada tanggal dan stasiun tersebut.
+- category : Kategori kualitas udara berdasarkan nilai 'maks' yang menggambarkan tingkat kualitas udara.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+### Eksplorasi Data
+- Boxplot
+- Kualitas udara berdasarkan stasiun
+- Korelasi antar fitur
+- Tren Historis
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
+- Menghapus data duplikat dan missing value (dropna())
+- Menerapkan Label Encoding untuk kolom stasiun, critical, dan categori (LabelEncoder)
+- Drop kolom tanggal karena tidak relevan untuk model klasifikasi
+- Menerapkan metode IQR capping untuk menangani outlier
+- Normalisasi fitur numerik menggunakan StandardScaler
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+### Alasan Tahapan Data Preparation
+- Data yang bersih dari data duplikat dan missing value dan sudah distandarisasi dapat membuat model tidak bias dan dapat melakukan generalisasi dengan baik.
+- Encoding perlu dilakukan agar fitur kategorikal dapat digunakan oleh algoritma machine learning yang akan dibuat.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifier dan Logistic Regression. Parameter default digunakan untuk baseline, setelah itu dilakukan hyperparameter tuning menggunakan RandomizedSearchCV.
+
+### Kelebihan dan Kekurangan
+- Random Forest memiliki performa tinggi pada data tabular dan mampu menangani data non linear dengan baik, hanya saja Random Forest merupakan model yang cukup kompleks dan membutuhkan tuning yang tepat.
+- Logistic Regression merupakan model yang mudah diinterpreasi, namun kurang akurat untuk relasi non linear.
+
+### Tuning yang Diterapkan:
+- Random Forest: n_estimatos, max_depth, min_samples_split
+- Logistic Regression: tol, class_weight, max_iter
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
@@ -80,7 +84,12 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 - Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Metrik yang digunakan untuk mengevaluasi model, yaitu:
+- Akurasi: Proporsi prediksi benar terhadap seluruh data
+- F1 Score: Gabungan precision dan recall yang mempertimbangkan ketidakseimbangan antar kelas
+Evaluasi dilakukan dua kali, yaitu evaluasi sebelum diterapkan tuning dan setelah diterapkan tuning.
+
+### Evaluasi Sebelum Tuning
 
 Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, rec
 all, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
