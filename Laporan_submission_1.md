@@ -34,7 +34,7 @@ Bagian laporan ini mencakup:
 - Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 [<a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021">Air Quality Index in Jakarta</a>].
+Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 <a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021">Air Quality Index in Jakarta</a>.
 
 ### Variabel-variabel pada Air Quality Index in Jakarta dataset adalah sebagai berikut:
 - tanggal : Tanggal pencatatan kualitas udara
@@ -51,10 +51,13 @@ Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang 
 
 ### Eksplorasi Data
 - Boxplot
-![EDA Image](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/path/to/CMLR_AT.png)
+![Outlier](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bp_1.png)
 - Kualitas udara berdasarkan stasiun
+![Air Quality by Station](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png)
 - Korelasi antar fitur
+![Correlation between each feature](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/corr.png)
 - Tren Historis
+![Historical Trend](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tren.png)
 
 ## Data Preparation
 Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
