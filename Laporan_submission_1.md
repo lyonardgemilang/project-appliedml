@@ -22,7 +22,7 @@ Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta
 - Mengevaluasi dan membandingkan performa dua model machine learning dalam mengklasifikasi kualitas udara.
 
 ### Solution statements
-- Menggunakan dau algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan F1-score
+- Menggunakan dua algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan F1-score
 - Melakukan hyperparameter tuning pada kedua model untuk mengoptimalisasi performa.
 - Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
@@ -48,13 +48,13 @@ Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang 
 Gambar di atas merupakan boxplot dari kolom pm25. Data pada dataset ini memiliki banyak outlier. Tidak hanya pada kolom itu saja, kolom-kolom lainnya seperti pm10, so2, co, o3, no2, dan max memiliki outlier juga.
 - Kualitas udara berdasarkan stasiun <br>
 ![Air Quality by Station](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png) <br>
-Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak diantara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan. 
+Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak di antara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan. 
 - Korelasi antar fitur <br>
 ![Correlation between each feature](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/corr.png) <br>
 Dari correlation matrix ini, kolom pm25, pm10, dan max memiliki korelasi kuat terhadap label categori, yang menjadikan bahwa ketiga kolom tersebut sangat mungkin relevan untuk model klasifikasi. Kolom stasiun terhadap pm25/pm10/categori juga cukup memiliki hubungan yang menandakan bahwa stasiun juga memiliki peran terhadap kategori kualitas udara.
 - Tren Historis <br>
 ![Historical Trend](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tren.png) <br>
-Dilihat dari line chart ini, PM2.5 merupakan polutan paling fluktuatif dan palin sering melonjak tinggi. Apabila dilihat dari pola Polutan seperti PM2.5 dan PM10, sangat memungkinkan bahwa pada 2025 akan mengalami kenaikan lagi dan mungkin akan mencapai puncak pada pertengahan 2025 seperti pada bulan Okteber 2023. 
+Dilihat dari line chart ini, PM2.5 merupakan polutan paling fluktuatif dan palin sering melonjak tinggi. Apabila dilihat dari pola Polutan seperti PM2.5 dan PM10, sangat memungkinkan bahwa pada 2025 akan mengalami kenaikan lagi dan mungkin akan mencapai puncak pada pertengahan 2025 seperti pada bulan Oktober 2023. 
 
 ## Data Preparation
 Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
@@ -74,7 +74,7 @@ Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifi
 
 ### Kelebihan dan Kekurangan
 - Random Forest memiliki performa tinggi pada data tabular dan mampu menangani data non linear dengan baik, hanya saja Random Forest merupakan model yang cukup kompleks dan membutuhkan tuning yang tepat.
-- Logistic Regression merupakan model yang mudah diinterpreasi, namun kurang akurat untuk relasi non linear.
+- Logistic Regression merupakan model yang mudah diinterpretasi, namun kurang akurat untuk relasi non linear.
 
 ### Tuning yang Diterapkan:
 - Random Forest: n_estimator, max_depth, min_samples_split
@@ -84,7 +84,7 @@ Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifi
 - Logistic Regression: tol, class_weight, max_iter
   - tol: batas toleransi konvergensi
   - class_weight: penyesuaian bobot untuk mengatasi class imbalance
-  - max_iter: jumah iterasi maksimum
+  - max_iter: jumlah iterasi maksimum
 
 Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak, didapat hyperparameter terbaik seperti gambar di bawah ini: <br>
 ![Tuning Param](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tuning.png) <br>
@@ -101,7 +101,7 @@ Evaluasi dilakukan dua kali, yaitu evaluasi sebelum diterapkan tuning dan setela
 RF Accuracy: 0.9920634920634921 <br>
 RF F1 Score: 0.9916796348168897 <br>
 ![CM RF](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMRF_BT.png) <br>
-Akurasi model Random Forest pada data test adalah sebesar 0.99 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Namun, perlu dicari tahu apakah model ini overfitting atau tidak. Salah satu caranya, yaitu dengan membandingkan akurasi test dengan train seperti di bawah ini: <br>
+Akurasi model Random Forest pada data test adalah sebesar 0.99 begitu juga dengan F1-score. Dilihat pada gambar metrik di atas, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Namun, perlu dicari tahu apakah model ini overfitting atau tidak. Salah satu caranya, yaitu dengan membandingkan akurasi test dengan train seperti di bawah ini: <br>
 RF Train Accuracy: 1.0 <br>
 RF Test Accuracy: 0.9920634920634921 <br>
 RF Train F1 Score: 1.0 <br>
@@ -111,7 +111,7 @@ Ternyata model tersebut mengalami overfitting karena akurasi train lebih besar d
 LR Accuracy: 0.9761904761904762 <br>
 LR F1 Score: 0.9757963693965064 <br>
 ![CM LR](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMLR_BT.png) <br>
-Akurasi model Logistic Regression pada data test adalah sebesar 0.97 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, model ini memiliki lebih banyak kesalahan prediksi dibandingkan Random Forest, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 2. Dilakukan cara yan sama untuk memeriksa apakah model ini overfitting atau tidak. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logisic Regression: <br>
+Akurasi model Logistic Regression pada data test adalah sebesar 0.97 begitu juga dengan F1-score. Dilihat pada gambar metrik di atas, model ini memiliki lebih banyak kesalahan prediksi dibandingkan Random Forest, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 2. Dilakukan cara yan sama untuk memeriksa apakah model ini overfitting atau tidak. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logistic Regression: <br>
 LR Train Accuracy: 0.9424603174603174 <br>
 LR Test Accuracy: 0.9761904761904762 <br>
 LR Train F1 Score: 0.9356552509581937 <br>
@@ -124,7 +124,7 @@ Sejauh ini, Random Forest masih menjadi model yang unggul dibanding Random Fores
 RF Accuracy: 0.9920634920634921 <br>
 RF F1 Score: 0.9916796348168897 <br>
 ![CM RF AT](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMRF_AT.png) <br>
-Setelah dilakukan tuning, akurasi model Random Forest pada data test tetap sebesar 0.99 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, sama seperti sebelumnya, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Random Forest: <br>
+Setelah dilakukan tuning, akurasi model Random Forest pada data test tetap sebesar 0.99 begitu juga dengan F1-score. Dilihat pada gambar metrik di atas, sama seperti sebelumnya, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Random Forest: <br>
 RF Train Accuracy: 0.9890873015873016 <br>
 RF Test Accuracy: 0.9920634920634921 <br> 
 RF Train F1 Score: 0.987401310877358 <br>
@@ -134,7 +134,7 @@ Model lebih baik dari sebelumnya karena model ini tidak lagi menghasilkan akuras
 LR Accuracy: 0.9801587301587301 <br>
 LR F1 Score: 0.9797413623201591 <br>
 ![CM LR AT](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMLR_AT.png) <br>
-Setelah dilakukan tuning, akurasi model Logistic Regression mengalami peningkatan sehingga menjadi 0.98 begitu juga dengan F1-score yang menjadi 0.979. Dililhat pada gambar metrik di atas, kesalahan yang dibuat model ini berkurang, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logistic Regression: <br>
+Setelah dilakukan tuning, akurasi model Logistic Regression mengalami peningkatan sehingga menjadi 0.98 begitu juga dengan F1-score yang menjadi 0.979. Dilihat pada gambar metrik di atas, kesalahan yang dibuat model ini berkurang, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logistic Regression: <br>
 LR Train Accuracy: 0.9424603174603174 <br>
 LR Test Accuracy: 0.9801587301587301 <br>
 LR Train F1 Score: 0.9362806614769447 <br>
