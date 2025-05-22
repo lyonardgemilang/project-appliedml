@@ -2,34 +2,26 @@
 
 ## Domain Proyek
 
-Jakarta merupakan kota yang dapat dikatakan memiliki kualitas udara terburuk di Indonesia. Dilansir dari IQAir, tidak jarang index AQI Jakarta berada di kategori tidak sehat untuk sensitif. Penyebab dari buruknya kualitas di Jakarta adalah banyaknya kendaraan dan pabrik yang membuat polusi udara semakin menumpuk. Akibatnya banyak seali masyarakat yang terkena penyakit pernapasan. Dilansir dari rendahemisi.jakarta.go.id, polusi udara menyebabkan lebih dari 90 juta kasus gejala pernapasan dengan kerugian ekonomi 1.8 triliun rupiah. Polutan udara yang berbahaya adalah PM2.5 dan Ozon. Tidak hanya manusia yang terkena dampaknya, lingkungan sekitar pun menjadi terpengaruh akibat buruknya kualitas udara di Jakarta.
+Jakarta merupakan kota yang dapat dikatakan memiliki kualitas udara terburuk di Indonesia. Dilansir dari IQAir, tidak jarang index AQI Jakarta berada di kategori tidak sehat untuk sensitif. Penyebab dari buruknya kualitas di Jakarta adalah banyaknya kendaraan dan pabrik yang membuat polusi udara semakin menumpuk. Akibatnya banyak seali masyarakat yang terkena penyakit pernapasan. Menurut laporan tahun 2021 yang diterbitkan oleh Organisasi Kesehatan Dunia (WHO), 13 orang di seluruh  dunia meninggal setiap menit akibat polusi udara dan penyakit serius seperti penyakit  kardiovaskular, stroke, dan kanker paru-paru (Perdana & Muklason, 2023).  Pada tahun 2002, sebuah studi dari Asian Development Bank memperkirakan bahwa polusi udara berdampak pada lebih dari 90 juta kasus gejala pernapasan dengan estimasi kerugian ekonomi sekitar 1,8 triliun Rupiah. Dari berbagai jenis polutan yang terdapat di udara ambien, ada dua polutan utama yang memiliki dampak merugikan paling besar pada kesehatan manusia, yaitu ozon permukaan (O3) dan PM2.5 (partikulat berdiameter kurang dari 2.5 mikrometer)  (Syuhada, 2022). Tidak hanya manusia yang terkena dampaknya, lingkungan sekitar pun menjadi terpengaruh akibat buruknya kualitas udara di Jakarta.
 
 Masalah ini harus segara diatasi agar mengurangi atau bahkan dapat mencegah terjadinya penyakit pernafasan yang diakibatkan oleh polusi udara. Dengan diatasi masalah ini akan banyak masyarakat yang sehat bahkan negara pun tidak akan mengalami kerugian ekonomi. Salah satu cara yang dapat diterapkan untuk mengatasi masalah ini adalah dengan membuat model Machine Learning yang dapat mendeteksi kualitas udara yang memberikan peringatan kepada masyarakat sekitar untuk memakai masker agar mengurangi risiko terkena penyakit pernafasan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+Referensi:
+Perdana, D., & Muklason, A. (2023). Machine Learning untuk Peramalan Kualitas Indeks Standar Pencemar Udara DKI Jakarta dengan Metode Hibrid ARIMAX-LSTM. ILKOMNIKA: Journal of Computer Science and Applied Informatics, 5(3), 209–222. https://doi.org/10.28926/ilkomnika.v5i3.588
+Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta. https://rendahemisi.jakarta.go.id/article/174/dampak-polusi-udara-bagi-kesehatan-warga-jakarta#:~:text=Tingkat%20kerusakan%20atau%20keparahan%20dari,5%20mikrometer
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
-
 ### Problem Statements
-
 - Bagaimana membangun model machine learning untuk memprediksi kualitas udara berdasarkan parameter pencemar udara?
 - Algoritma apa yang paling efektif untuk memodelkan prediksi kualitas udara dengan akurasi tinggi?
 
 ### Goals
-
 - Menghasilkan model prediktif yang mampu mengklasifikasikan kualitas udara dari data polutan yang tersedia.
 - Mengevaluasi dan membandingkan performa dua model machine learning dalam mengklasifikasi kualitas udara.
 
 ### Solution statements
-- Menggunakan dau algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan f1-score
+- Menggunakan dau algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan F1-score
 - Melakukan hyperparameter tuning pada kedua model untuk mengoptimalisasi performa.
 - Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
@@ -50,25 +42,30 @@ Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang 
 - category : Kategori kualitas udara berdasarkan nilai 'maks' yang menggambarkan tingkat kualitas udara.
 
 ### Eksplorasi Data
-- Boxplot
+- Boxplot <br>
 ![Outlier](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bp_1.png)
-- Kualitas udara berdasarkan stasiun
+Gambar di atas merupakan boxplot dari kolom pm25. Data pada dataset ini memiliki banyak outlier. Tidak hanya pada kolom itu saja, kolom-kolom lainnya seperti pm10, so2, co, o3, no2, dan max memiliki outlier juga.
+- Kualitas udara berdasarkan stasiun <br>
 ![Air Quality by Station](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png)
-- Korelasi antar fitur
+Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak diantara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan. 
+- Korelasi antar fitur <br>
 ![Correlation between each feature](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/corr.png)
-- Tren Historis
+Dari correlation matrix ini, kolom pm25, pm10, dan max memiliki korelasi kuat terhadap label categori, yang menjadikan bahwa ketiga kolom tersebut sangat mungkin relevan untuk model klasifikasi. Kolom stasiun terhadap pm25/pm10/categori juga cukup memiliki hubungan yang menandakan bahwa stasiun juga memiliki peran terhadap kategori kualitas udara.
+- Tren Historis <br>
 ![Historical Trend](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tren.png)
+Dilihat dari line chart ini, PM2.5 merupakan polutan paling fluktuatif dan palin sering melonjak tinggi. Apabila dilihat dari pola Polutan seperti PM2.5 dan PM10, sangat memungkinkan bahwa pada 2025 akan mengalami kenaikan lagi dan mungkin akan mencapai puncak pada pertengahan 2025 seperti pada bulan Okteber 2023. 
 
 ## Data Preparation
 Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
 - Menghapus data duplikat dan missing value (dropna())
 - Menerapkan Label Encoding untuk kolom stasiun, critical, dan categori (LabelEncoder)
-- Drop kolom tanggal karena tidak relevan untuk model klasifikasi
+- Drop kolom tanggal, max, dan critical karena tidak relevan untuk model klasifikasi
 - Menerapkan metode IQR capping untuk menangani outlier
-- Normalisasi fitur numerik menggunakan StandardScaler
+- Standarisasi fitur numerik menggunakan StandardScaler
 
 ### Alasan Tahapan Data Preparation
 - Data yang bersih dari data duplikat dan missing value dan sudah distandarisasi dapat membuat model tidak bias dan dapat melakukan generalisasi dengan baik.
+- Kolom tanggal hanya menunjukkan kapan data diambil sehingga tidak relevan untuk digunakan. Kolom seperti max di drop karena meskipun kolom tersebut memiliki korelasi yang kuat dengan categori, kolom ini hanya memberitahu ulang nilai polutan mana yang memiliki nilai paling tinggi. Dengan adanya kolom max, ditakutkan model hanya melihat max dan mengabaikan kontribusi polutan lain. Kolom critical juga di drop karena kolom tersebut juga hanya berisi data dari nama polutan yang paling tinggi konsentrasinya.
 - Encoding perlu dilakukan agar fitur kategorikal dapat digunakan oleh algoritma machine learning yang akan dibuat.
 
 ## Modeling
@@ -79,13 +76,19 @@ Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifi
 - Logistic Regression merupakan model yang mudah diinterpreasi, namun kurang akurat untuk relasi non linear.
 
 ### Tuning yang Diterapkan:
-- Random Forest: n_estimatos, max_depth, min_samples_split
+- Random Forest: n_estimator, max_depth, min_samples_split
+  - n_estimators: jumlah pohon dalam model
+  - max_depth: kedalaman maksimum setiap pohon
+  - min_samples_split: jumlah minimal sampel untuk membagi node
 - Logistic Regression: tol, class_weight, max_iter
+  - tol: batas toleransi konvergensi
+  - class_weight: penyesuaian bobot untuk mengatasi class imbalance
+  - max_iter: jumah iterasi maksimum
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak, didapat hyperparameter terbaik seperti gambar di bawah ini
+![Tuning Param](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tuning.png)
+
+Dari 2 model yang sudah dibuat, model yang dipilih untuk klasifikasi kualitas udara adalah Random Forest. Random Forest menghasilkan akurasi dan F1 Score lebih tinggi dibandingkan Logistic Regression.
 
 ## Evaluation
 Metrik yang digunakan untuk mengevaluasi model, yaitu:
@@ -94,20 +97,47 @@ Metrik yang digunakan untuk mengevaluasi model, yaitu:
 Evaluasi dilakukan dua kali, yaitu evaluasi sebelum diterapkan tuning dan setelah diterapkan tuning.
 
 ### Evaluasi Sebelum Tuning
+RF Accuracy: 0.9920634920634921
+RF F1 Score: 0.9916796348168897
+![CM RF](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMRF_BT.png) <br>
+Akurasi model Random Forest pada data test adalah sebesar 0.99 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Namun, perlu dicari tahu apakah model ini overfitting atau tidak. Salah satu caranya, yaitu dengan membandingkan akurasi test dengan train seperti di bawah ini: 
+RF Train Accuracy: 1.0
+RF Test Accuracy: 0.9920634920634921
+RF Train F1 Score: 1.0
+RF Test F1 Score: 0.9916796348168897
+Ternyata model tersebut mengalami overfitting karena akurasi train lebih besar dibandingkan akurasi tes begitu juga dengan F1-scorenya.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, rec
-all, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+LR Accuracy: 0.9761904761904762
+LR F1 Score: 0.9757963693965064
+![CM LR](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMLR_BT.png)
+Akurasi model Logistic Regression pada data test adalah sebesar 0.97 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, model ini memiliki lebih banyak kesalahan prediksi dibandingkan Random Forest, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 2. Dilakukan cara yan sama untuk memeriksa apakah model ini overfitting atau tidak. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logisic Regression: 
+LR Train Accuracy: 0.9424603174603174
+LR Test Accuracy: 0.9761904761904762
+LR Train F1 Score: 0.9356552509581937
+LR Test F1 Score: 0.9757963693965064
+Model ini tidak mengalami overfitting, bahkan akurasi dan F1-score tes lebih tinggi dibandingkan dengan train.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+Sejauh ini, Random Forest masih menjadi model yang unggul dibanding Random Forest.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+### Evaluasi Setelah Tuning
+RF Accuracy: 0.9920634920634921
+RF F1 Score: 0.9916796348168897
+![CM RF AT](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMRF_AT.png)
+Setelah dilakukan tuning, akurasi model Random Forest pada data test tetap sebesar 0.99 begitu juga dengan F1-score. Dililhat pada gambar metrik di atas, sama seperti sebelumnya, model ini hanya memiliki 2 kesalahan prediksi, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Random Forest:  
+RF Train Accuracy: 0.9890873015873016
+RF Test Accuracy: 0.9920634920634921
+RF Train F1 Score: 0.987401310877358
+RF Test F1 Score: 0.9916796348168897
+Model lebih baik dari sebelumnya karena model ini tidak lagi menghasilkan akurasi dan F1-score train yang lebih tinggi dari pada tes. Hal ini menandakan bahwa model Random Forest ini tidak lagi overfitting.
 
-**---Ini adalah bagian akhir laporan---**
+LR Accuracy: 0.9801587301587301
+LR F1 Score: 0.9797413623201591
+![CM LR AT](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/CMLR_AT.png)
+Setelah dilakukan tuning, akurasi model Logistic Regression mengalami peningkatan sehingga menjadi 0.98 begitu juga dengan F1-score yang menjadi 0.979. Dililhat pada gambar metrik di atas, kesalahan yang dibuat model ini berkurang, yaitu label 1 yang diprediksi sebagai 0 sebanyak 1 dan diprediksi sebagai 2 sebanyak 3, dan label 2 yang diprediksi sebagai 1 sebanyak 1. Berikut perbandingan akurasi dan F1-Score pada train dan tes pada model Logistic Regression:  
+LR Train Accuracy: 0.9424603174603174
+LR Test Accuracy: 0.9801587301587301
+LR Train F1 Score: 0.9362806614769447
+LR Test F1 Score: 0.9797413623201591
+Model mengalami peningkatan baik secara akurasi dan F1-Score. Model ini juga tidak overfitting.
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
-
+Kesimpulannya, dari kedua model yang sudah dibuat, model terbaik yang akan dipilih adalah Random Forest karena model Random Forest memiliki performa yang lebih baik dibandingkan Logistic Regression dan model ini tidak lagi overfitting setelah tuning.
