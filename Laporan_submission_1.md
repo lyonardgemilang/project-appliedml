@@ -27,7 +27,7 @@ Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta
 - Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 <a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021">Air Quality Index in Jakarta</a>.
+Data yang digunakan dalam proyek ini adalah "Air Quality Index in Jakarta" yang berisi Indeks Standar Pencemaran Udara yang diukur dari 5 stasiun pemantauan kualitas udara di Jakarta dari Januari 2010 sampai Februari 2025. Pada dataset ini terdapat 2 tipe file, yaitu ispu_dkix yang mengandung data AQI masing-masing stasiun dari Januari 2010 sampai Februari 2025 (kecuali 2022) dan ispu_dki_all yang mengandung data AQI gabungan dari keseluruhan stasiun dari Januari 2010 sampai Februari 2025 (Dataset: <a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-jakarta-2010-2021">Air Quality Index in Jakarta Dataset</a>).
 
 ### Variabel-variabel pada Air Quality Index in Jakarta dataset adalah sebagai berikut:
 - tanggal : Tanggal pencatatan kualitas udara
@@ -86,7 +86,7 @@ Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifi
   - class_weight: penyesuaian bobot untuk mengatasi class imbalance
   - max_iter: jumah iterasi maksimum
 
-Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak, didapat hyperparameter terbaik seperti gambar di bawah ini
+Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak, didapat hyperparameter terbaik seperti gambar di bawah ini: <br>
 ![Tuning Param](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tuning.png) <br>
 
 Dari 2 model yang sudah dibuat, model yang dipilih untuk klasifikasi kualitas udara adalah Random Forest. Random Forest menghasilkan akurasi dan F1 Score lebih tinggi dibandingkan Logistic Regression.
