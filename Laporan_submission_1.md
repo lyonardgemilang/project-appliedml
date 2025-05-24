@@ -172,20 +172,31 @@ Metrik yang digunakan untuk mengevaluasi model, yaitu:
 - F1 Score
 
 ### Akurasi
-Akurasi mengukur proporsi prediksi yang benar dari keseluruhan jumlah prediksi, baik yang benar positif (True Positive/TP) maupun benar negatif (True Negative/TN). Berikut merupakan rumus akurasi:
-$Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$ <br>
+Akurasi mengukur proporsi prediksi yang benar dari keseluruhan jumlah prediksi, baik yang benar positif (True Positive/TP) maupun benar negatif (True Negative/TN). Berikut merupakan rumus akurasi: <br>
+$$
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+$$
+ <br>
 - TP (True Positive): Prediksi benar untuk kelas positif
 - TN (True Negative): Prediksi benar untuk kelas negatif
 - FP (False Positive): Prediksi salah, model memprediksi positif yang seharusnya negatif
 - FN (False Negative): Prediksi salah, model memprediksi negatif yang seharusnya positif
 
 ### F1-Score
-F1 Score adalah rata-rata harmonis dari Precision dan Recall. F1 Score sangat penting untuk kasus dengan distribusi kelas tidak seimbang karena mempertimbangkan baik prediksi positif yang tepat maupun semua prediksi positif yang seharusnya. Berikut merupakan rumus F1-Score:
-$F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$ <br>
+F1 Score adalah rata-rata harmonis dari Precision dan Recall. F1 Score sangat penting untuk kasus dengan distribusi kelas tidak seimbang karena mempertimbangkan baik prediksi positif yang tepat maupun semua prediksi positif yang seharusnya. Berikut merupakan rumus F1-Score: <br>
+$$
+F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+$$
+<br>
 dengan rumus precision:
-$Precision = \frac{TP}{TP + FP}$ <br>
+$$
+Precision = \frac{TP}{TP + FP}
+$$ 
+<br>
 dan rumus Recall:
-$Recall = \frac{TP}{TP + FN}$
+$$
+Recall = \frac{TP}{TP + FN}
+$$
 
 ### Evaluasi Sebelum Tuning
 RF Accuracy: 0.9920634920634921 <br>
