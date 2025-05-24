@@ -49,13 +49,20 @@ Dataset: <a href="https://www.kaggle.com/datasets/senadu34/air-quality-index-in-
 - critical: Polutan yang mempunyai konsentrasi tertinggi pada tanggal dan stasiun tersebut.
 - category : Kategori kualitas udara berdasarkan nilai 'maks' yang menggambarkan tingkat kualitas udara.
 
+### Tipe Data Setiap Variabel
+- tanggal, stasiun, critical, categori: string (object)
+- pm25, pm10, so2, co, o3, no2, max: numerik (float64)
+
 ### Eksplorasi Data
 - Boxplot <br>
 ![Outlier](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bp_1.png) <br>
 Gambar di atas merupakan boxplot dari kolom pm25. Data pada dataset ini memiliki banyak outlier. Tidak hanya pada kolom itu saja, kolom-kolom lainnya seperti pm10, so2, co, o3, no2, dan max memiliki outlier juga.
 - Kualitas udara berdasarkan stasiun <br>
 ![Air Quality by Station](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png) <br>
-Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak di antara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan. 
+Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak di antara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan.
+- Jumlah Level Kritis Polutan <br>
+![Critical Levels Count](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/crit.png) <br>
+Polutan PM2.5 merupakan polutan yang paling sering menyentuh titik kritis. Terdapat 1000 data lebih yang menyatakan bahwa polutan PM2.5 mencapai titik kritis.
 - Korelasi antar fitur <br>
 ![Correlation between each feature](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/corr.png) <br>
 Dari correlation matrix ini, kolom pm25, pm10, dan max memiliki korelasi kuat terhadap label categori, yang menjadikan bahwa ketiga kolom tersebut sangat mungkin relevan untuk model klasifikasi. Kolom stasiun terhadap pm25/pm10/categori juga cukup memiliki hubungan yang menandakan bahwa stasiun juga memiliki peran terhadap kategori kualitas udara.
