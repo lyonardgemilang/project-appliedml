@@ -182,9 +182,9 @@ $Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$ <br>
 ### F1-Score
 F1 Score adalah rata-rata harmonis dari Precision dan Recall. F1 Score sangat penting untuk kasus dengan distribusi kelas tidak seimbang karena mempertimbangkan baik prediksi positif yang tepat maupun semua prediksi positif yang seharusnya. Berikut merupakan rumus F1-Score: <br>
 $F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$ <br>
-dengan rumus precision:
+dengan rumus precision: <br>
 $Precision = \frac{TP}{TP + FP}$ <br>
-dan rumus Recall:
+dan rumus Recall: <br>
 $Recall = \frac{TP}{TP + FN}$
 
 ### Evaluasi Sebelum Tuning
