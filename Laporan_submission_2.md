@@ -22,12 +22,10 @@ Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta
 - Mengevaluasi dan membandingkan performa dua model machine learning dalam mengklasifikasi kualitas udara.
 
 ### Solution statements
-- Menggunakan dua algoritma, yaitu Random Forest Classifier dan Logistic Regression, lalu mengevaluasi kedua model dengan membandingkan akurasi dan F1-score
-- Melakukan hyperparameter tuning pada kedua model untuk mengoptimalisasi performa.
-- Memilih model terbaik berdasarkan hasil evaluasi metrik akurasi dan f1-score.
+- Menggunakan dua algoritma, yaitu Content-based Filtering dan Collaborative Filtering.
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah "MovieLens Beliefs Dataset" yang berisi rekomendasi pengguna, rating, dan perkiraan rating yang diberikan user untuk film yang belum pernah ditonton. Dataset yang digunakan adalah movies.csv dan user_rating.csv.
+Data yang digunakan dalam proyek ini adalah "MovieLens Beliefs Dataset" yang berisi rekomendasi pengguna, rating, dan perkiraan rating yang diberikan user untuk film yang belum pernah ditonton. Dataset yang digunakan adalah movies.csv dan user_rating_history.csv.
 
 ### Dataset
 Dataset: <a href="https://grouplens.org/datasets/movielens/ml_belief_2024/">MovieLens Dataset</a> <br>
@@ -51,52 +49,48 @@ Tipe Data Setiap Variabel
 - Terdapat data duplikat.
 - Terdapat missing value pada kolom rating. <br>
 
-Variabel-variabel pada movies dataset adalah sebagai berikut:
+Variabel-variabel pada user_rating_history dataset adalah sebagai berikut:
 - userId: ID pengguna
-- movieId: Id film
-- rating:  <br>
+- movieId: ID film
+- rating: Penilaian pengguna terhadap film
+- tstamp: Waktu pengiriman rating
 
 Tipe Data Setiap Variabel
-- movieId: numerik (int64)
-- title, genres: string (object)
+- userId, movieId: numerik (int64)
+- rating: numerik (float64)
+- tstamp: string (object)
 
 ### Eksplorasi Data
-- Boxplot <br>
-![Outlier](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bp_1.png) <br>
-Gambar di atas merupakan boxplot dari kolom pm25. Data pada dataset ini memiliki banyak outlier. Tidak hanya pada kolom itu saja, kolom-kolom lainnya seperti pm10, so2, co, o3, no2, dan max memiliki outlier juga.
-- Kualitas udara berdasarkan stasiun <br>
-![Air Quality by Station](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png) <br>
-Dari bar chart ini, dapat dilihat kualitas udara berdasarkan stasiun. Stasiun lubang buaya memiliki kualitas udara yang tidak sehat terbanyak di antara stasiun lainnya. Meskipun semua stasiun rata-rata memiliki kualitas udara yang sedang, tidak ada satu kota pun yang memiliki kualitas udara yang sangat baik. Hal ini cukup memprihatinkan.
-- Jumlah Level Kritis Polutan <br>
-![Critical Levels Count](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/crit.png) <br>
-Polutan PM2.5 merupakan polutan yang paling sering menyentuh titik kritis. Terdapat 1000 data lebih yang menyatakan bahwa polutan PM2.5 mencapai titik kritis.
-- Korelasi antar fitur <br>
-![Correlation between each feature](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/corr.png) <br>
-Dari correlation matrix ini, kolom pm25, pm10, dan max memiliki korelasi kuat terhadap label categori, yang menjadikan bahwa ketiga kolom tersebut sangat mungkin relevan untuk model klasifikasi. Kolom stasiun terhadap pm25/pm10/categori juga cukup memiliki hubungan yang menandakan bahwa stasiun juga memiliki peran terhadap kategori kualitas udara.
-- Tren Historis <br>
-![Historical Trend](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/tren.png) <br>
-Dilihat dari line chart ini, PM2.5 merupakan polutan paling fluktuatif dan palin sering melonjak tinggi. Apabila dilihat dari pola Polutan seperti PM2.5 dan PM10, sangat memungkinkan bahwa pada 2025 akan mengalami kenaikan lagi dan mungkin akan mencapai puncak pada pertengahan 2025 seperti pada bulan Oktober 2023. 
+- Histogram Rating <br>
+![Rating Hist]() <br>
+Gambar di atas merupakan histogram dari Rating.
+- Rating Film <br>
+![Rating Film](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png) <br>
+Dari bar chart ini, dapat dilihat ...
 
 ## Data Preparation
-Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
-- Menghapus data missing value (dropna())
-- Menerapkan metode IQR capping untuk menangani outlier
-- Drop kolom tanggal, max, dan critical karena tidak relevan untuk model klasifikasi
-- Menerapkan Label Encoding untuk kolom stasiun dan categori (LabelEncoder)
-- Standarisasi fitur numerik menggunakan StandardScaler
-- Split data menggunakan train_test_split dengan proporsi 80% untuk data latih dan 20% untuk data uji.
+Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation untuk kedua dataset yang dipakai.
 
-### Alasan Tahapan Data Preparation
-- Data yang bersih dari data duplikat, outlier, missing value dan sudah distandarisasi dapat membuat model tidak bias dan dapat melakukan generalisasi dengan baik.
-- Kolom tanggal hanya menunjukkan kapan data diambil sehingga tidak relevan untuk digunakan. Kolom seperti max di drop karena meskipun kolom tersebut memiliki korelasi yang kuat dengan categori, kolom ini hanya memberitahu ulang nilai polutan mana yang memiliki nilai paling tinggi. Dengan adanya kolom max, ditakutkan model hanya melihat max dan mengabaikan kontribusi polutan lain. Kolom critical juga di drop karena kolom tersebut juga hanya berisi data dari nama polutan yang paling tinggi konsentrasinya.
-- Encoding perlu dilakukan agar fitur kategorikal dapat digunakan oleh algoritma machine learning yang akan dibuat.
-- Standarisasi dilakukan agar mencegah fitur dengan angka besar mendominasi proses training. Dengan dilakukan tahap ini juga dapat memastikan setiap fitur memberi kontribusi yang setara pada pemodelan.
-- Splitting data dilakukan agar model dapat dilatih pada sebagian besar data dan diuji pada data yang belum pernah dilihat sebelumnya.
+### movies.csv
+- Menghapus data missing value (dropna())
+- Menghilangkan simbol "|" pada kolom genres sehingga setiap genre dipisah dengan menggunakan spasi saja <br>
+
+**Alasan Tahapan Data Preparation**
+- 
+- <br>
+
+### user_rating_history.csv
+- Menghapus data missing value (dropna())
+- Menghapus data duplikat (drop_duplicates())
+
+**Alasan Tahapan Data Preparation**
+- 
+- <br>
 
 ## Modeling
-Terdapat dua model yang digunakan dalam proyek ini, yaitu Random Forest Classifier dan Logistic Regression.
+Terdapat dua model yang digunakan dalam proyek ini, yaitu Content-based filtering (top-N) dan Collaborative Filtering (RecommenderNet).
 
-### Random Forest Classifier
+### Content-based filtering
 Random Forest adalah algoritma ensemble yang membangun banyak pohon keputusan (decision tree) selama proses training dan menggabungkan prediksi dari semua pohon untuk menentukan hasil akhir. Model ini bekerja dengan prinsip voting untuk klasifikasi dan rata-rata untuk regresi. Setiap pohon dilatih dengan subset data dan subset fitur yang dipilih secara acak.
 
 #### Parameter yang Digunakan dalam Proses Development
@@ -134,39 +128,19 @@ Parameter yang dipilih untuk dituning adalah n_estimators, max_depth, min_sample
 - min_samples_split: [2, 5, 10] untuk mengatur kapan node dapat di-split lebih lanjut. Nilai lebih tinggi mengurangi overfitting.
 - max_features: ['sqrt', 'log2'] menentukan jumlah maksimum fitur yang digunakan untuk mencari split terbaik di setiap node. sqrt cocok untuk dataset dengan banyak fitur dan log2 lebih konservatif yang dapat membantu generalisasi.
 
-### Logistic Regression
-Logistic Regression adalah algoritma linier yang digunakan untuk klasifikasi. Model ini memprediksi probabilitas suatu kelas berdasarkan kombinasi linier dari fitur input, menggunakan fungsi sigmoid/logistik untuk mengkonversi hasil menjadi probabilitas antara 0 dan 1.
+### Collaborative Filtering
 
 #### Parameter yang Digunakan dalam Proses Development
-Parameter yang dipakai adalah default
-- penalty='l2': Regularisasi L2
-- dual=False: Solver primal digunakan
-- tol=1e-4: Toleransi konvergensi
-- C=1.0: Parameter regulasi
-- fit_intercept=True: Menambahkan intercept ke model
-- intercept_scaling=1: Hanya berlaku jika solver 'liblinear'
-- class_weight=None: Tidak ada penyesuaian bobot antar kelas
-- random_state=None: Tidak ada seed acak yang disetel
-- solver='lbfgs': Solver optimisasi default
-- max_iter=100: Iterasi maksimum
-- multi_class='auto': Menyesuaikan otomatis metode klasifikasi
-- verbose=0: Tidak ada logging
-- warm_start=False: Tidak mempertahankan hasil training sebelumnya
-- n_jobs=None: Proses dijalankan dalam satu core
-- l1_ratio=None: Tidak digunakan kecuali regularisasi elasticnet
 
 #### Kelebihan
-- Cepat, efisien, dan interpretatif
-- Cocok untuk klasifikasi linier sederhana
+- 
+- 
 
 #### Kekurangan
-- Lemah untuk menangkap relasi non-linear
+- 
 
 #### Tuning yang Diterapkan:
-Parameter yang dipilih untuk dituning adala tol, class_weight, dan max_iter. Ketiga parameter dipilih karena cukup memengaruhi performa model ini. Dilakukan tuning menggunakan RandomizedCV untuk mencari hyperparameter optimal dengan value setiap parameter sebagai berikut:
-- tol: Nilai toleransi diuji dengan [0.001, 0.05, 0.2] untuk menyesuaikan sensitivitas konvergensi. Nilai tol yang lebih besar memungkinkan training yang lebih cepat, sedangkan nilai tol yang lebih kecil dapat memberikan hasil yang lebih presisi.
-- class_weight: [None, 'balanced'] untuk mengatasi distribusi tidak seimbang. Nilai 'balanced' akan menyesuaikan bobot kelas secara otomatis berdasarkan frekuensi kelas.
-- max_iter: [100, 200, 300] untuk memastikan solver mencapai konvergensi.
+
 
 
 Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak, didapat hyperparameter terbaik seperti gambar di bawah ini: <br>
