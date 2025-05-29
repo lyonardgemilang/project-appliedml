@@ -28,7 +28,7 @@ Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta
 Data yang digunakan dalam proyek ini adalah "MovieLens Beliefs Dataset" yang berisi rekomendasi pengguna, rating, dan perkiraan rating yang diberikan user untuk film yang belum pernah ditonton. Dataset yang digunakan adalah movies.csv dan user_rating_history.csv.
 
 ### Dataset
-Dataset: <a href="https://grouplens.org/datasets/movielens/ml_belief_2024/">MovieLens Dataset</a> <br>
+Dataset: <a href="https://grouplens.org/datasets/movielens/ml_belief_2024/">MovieLens Beliefs Dataset</a> <br>
 
 #### movies.csv
 - Jumlah data: 105071 baris dan 3 kolom.
@@ -62,10 +62,10 @@ Tipe Data Setiap Variabel
 
 ### Eksplorasi Data
 - Histogram Rating <br>
-![Rating Hist]() <br>
+![Top 20 Movies](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/top_20.png) <br>
 Gambar di atas merupakan histogram dari Rating.
 - Rating Film <br>
-![Rating Film](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/bar.png) <br>
+![Average Rating by Genre](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/avg_rating.png) <br>
 Dari bar chart ini, dapat dilihat ...
 
 ## Data Preparation
@@ -149,6 +149,13 @@ Dengan menggunakan RandomizedCV untuk mencari hyperparameter optimal secara acak
 Dari 2 model yang sudah dibuat, model yang dipilih untuk klasifikasi kualitas udara adalah Random Forest. Random Forest menghasilkan akurasi dan F1 Score lebih tinggi dibandingkan Logistic Regression.
 
 ## Evaluation
+
+### Content Based Filtering
+![Evaluation ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/eval_conbased.png) 
+
+### Collaborative Based Filtering
+![Evaluation ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/rmse.png) 
+
 Metrik yang digunakan untuk mengevaluasi model, yaitu:
 - Akurasi
 - F1 Score
