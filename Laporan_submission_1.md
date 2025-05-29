@@ -72,10 +72,10 @@ Dilihat dari line chart ini, PM2.5 merupakan polutan paling fluktuatif dan palin
 
 ## Data Preparation
 Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantara lain:
-- Menghapus data missing value (dropna())
-- Menerapkan metode IQR capping untuk menangani outlier
+- Menghapus data duplikat dan missing value (dropna())
+- Menerapkan Label Encoding untuk kolom stasiun, critical, dan categori (LabelEncoder)
 - Drop kolom tanggal, max, dan critical karena tidak relevan untuk model klasifikasi
-- Menerapkan Label Encoding untuk kolom stasiun dan categori (LabelEncoder)
+- Menerapkan metode IQR capping untuk menangani outlier
 - Standarisasi fitur numerik menggunakan StandardScaler
 - Split data menggunakan train_test_split dengan proporsi 80% untuk data latih dan 20% untuk data uji.
 
@@ -83,7 +83,6 @@ Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation, diantar
 - Data yang bersih dari data duplikat, outlier, missing value dan sudah distandarisasi dapat membuat model tidak bias dan dapat melakukan generalisasi dengan baik.
 - Kolom tanggal hanya menunjukkan kapan data diambil sehingga tidak relevan untuk digunakan. Kolom seperti max di drop karena meskipun kolom tersebut memiliki korelasi yang kuat dengan categori, kolom ini hanya memberitahu ulang nilai polutan mana yang memiliki nilai paling tinggi. Dengan adanya kolom max, ditakutkan model hanya melihat max dan mengabaikan kontribusi polutan lain. Kolom critical juga di drop karena kolom tersebut juga hanya berisi data dari nama polutan yang paling tinggi konsentrasinya.
 - Encoding perlu dilakukan agar fitur kategorikal dapat digunakan oleh algoritma machine learning yang akan dibuat.
-- Standarisasi dilakukan agar mencegah fitur dengan angka besar mendominasi proses training. Dengan dilakukan tahap ini juga dapat memastikan setiap fitur memberi kontribusi yang setara pada pemodelan.
 - Splitting data dilakukan agar model dapat dilatih pada sebagian besar data dan diuji pada data yang belum pernah dilihat sebelumnya.
 
 ## Modeling
