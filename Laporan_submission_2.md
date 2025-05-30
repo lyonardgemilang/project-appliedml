@@ -105,7 +105,7 @@ merge_df merupakan data gabungan dari dataset movies dan user_rating_history. Da
 - Data yang bersih dari missing value akan tercegah dari error dan model dapat belajar dari data yang valid.
 - userId dan movieId yang diubah menjadi integer agar dapat dimasukkan ke dalam model embedding
 - Rating yang dinormalisasi agar sesuai dengan fungsi aktivasi sigmoid dalam model neural network
-- Pembagian data latih dan validasi penting untuk mengukur perfroma generalisasi model
+- Pembagian data latih dan validasi penting untuk mengukur performa generalisasi model
 
 ## Modeling
 Terdapat dua model yang digunakan dalam proyek ini, yaitu Content-based filtering dan Collaborative Filtering.
