@@ -2,27 +2,31 @@
 
 ## Project Overview
 
-Jakarta merupakan kota yang dapat dikatakan memiliki kualitas udara terburuk di Indonesia. Dilansir dari IQAir, tidak jarang index AQI Jakarta berada di kategori tidak sehat untuk sensitif. Penyebab dari buruknya kualitas di Jakarta adalah banyaknya kendaraan dan pabrik yang membuat polusi udara semakin menumpuk. Akibatnya banyak seali masyarakat yang terkena penyakit pernapasan. Menurut laporan tahun 2021 yang diterbitkan oleh Organisasi Kesehatan Dunia (WHO), 13 orang di seluruh  dunia meninggal setiap menit akibat polusi udara dan penyakit serius seperti penyakit  kardiovaskular, stroke, dan kanker paru-paru (Perdana & Muklason, 2023).  Pada tahun 2002, sebuah studi dari Asian Development Bank memperkirakan bahwa polusi udara berdampak pada lebih dari 90 juta kasus gejala pernapasan dengan estimasi kerugian ekonomi sekitar 1,8 triliun Rupiah. Dari berbagai jenis polutan yang terdapat di udara ambien, ada dua polutan utama yang memiliki dampak merugikan paling besar pada kesehatan manusia, yaitu ozon permukaan (O3) dan PM2.5 (partikulat berdiameter kurang dari 2.5 mikrometer)  (Syuhada, 2022). Tidak hanya manusia yang terkena dampaknya, lingkungan sekitar pun menjadi terpengaruh akibat buruknya kualitas udara di Jakarta.
+Platform streaming film menghadapi tantangan dalam memberikan rekomendasi yang sesuai bagi penggunanya. Dengan banyaknya film yang baru saat ini, banyak pengguna yang kebingungan dalam memilih film. Per 2018 angka jumlah penonton bioskop di Indonesia saja telah mencapai lebih dari 50 juta penonton dengan jumlah produksi film luar negeri hingga dalam negeri sebanyak hampir 200 judul film yang telah tayang di seluruh Indonesia (Fajriansyah et al., 2021). Memilih film memakan sangat banyak waktu, yang tentunya hal itu bahkan dapat membuat pengguna tidak jadi menonton. Hal itu tidak hanya merugikan penonton, tetapi perusahaan juga. 
 
 ### Alasan
-Masalah ini harus segera diatasi agar mengurangi atau bahkan dapat mencegah terjadinya penyakit pernafasan yang diakibatkan oleh polusi udara. Dengan diatasi masalah ini akan banyak masyarakat yang sehat bahkan negara pun tidak akan mengalami kerugian ekonomi. Salah satu cara yang dapat diterapkan untuk mengatasi masalah ini adalah dengan membuat model Machine Learning yang dapat mendeteksi kualitas udara yang memberikan peringatan kepada masyarakat sekitar untuk memakai masker agar mengurangi risiko terkena penyakit pernafasan.
+Masalah ini harus diatasi oleh platform streaming film agar pengguna tetap menggunakan platoform tersebut. Oleh karena itu, platform streaming film memerlukan sistem rekomendasi. Sistem  rekomendasi  merupakansistem  perangkat  lunak  yang  dapat  membuat rekomendasi  ataupun  membuat  saran  akan  item-item  yang  sesuai  kepada  pengguna,  item adalah  istilah  umum  yang  digunakan  untuk  menunjukkan  apa  yang  direkomendasikan sistem  kepada  pengguna  (Wiputra & Shandi, 2021). Dengan dibuat sistem rekomendasi, pengguna dapat memilih film yang ingin ditonton selanjutnya yang relevan dengan preferensinya. Sistem rekomendasi dapat dibuat dengan menggunakan pendekatan Content-based filtering dan juga Collaborative Filtering. Content Based Filtering menggunakan kemiripan antar produk yang akan direkomendasikan dengan produk yang disukai pengguna dan Collaborative Filtering menggunakan kemiripan kueri dengan item pengguna dengan pengguna lain (Fajriansyah et al., 2021).
 
 ### Referensi:
-Perdana, D., & Muklason, A. (2023). Machine Learning untuk Peramalan Kualitas Indeks Standar Pencemar Udara DKI Jakarta dengan Metode Hibrid ARIMAX-LSTM. ILKOMNIKA: Journal of Computer Science and Applied Informatics, 5(3), 209–222. https://doi.org/10.28926/ilkomnika.v5i3.588 <br>
-Syuhada, G. (2022, January 19). Dampak Polusi Udara bagi Kesehatan Warga Jakarta. https://rendahemisi.jakarta.go.id/article/174/dampak-polusi-udara-bagi-kesehatan-warga-jakarta#:~:text=Tingkat%20kerusakan%20atau%20keparahan%20dari,5%20mikrometer
+Fajriansyah, Muhammad, et al. “Sistem Rekomendasi Film Menggunakan Content Based Filtering.” Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer, vol. 5, no. 6, 2021, http://j-ptiik.ub.ac.id/.
+Wiputra, Michael Mahendra, and Yusup Jauhari Shandi. “PERANCANGAN SISTEM REKOMENDASI MENGGUNAKAN METODE COLLABORATIVE FILTERING DENGAN STUDI KASUS PERANCANGAN WEBSITE REKOMENDASI FILM.” Media Informatika, vol. 20, no. 1, 2021, https://journal.likmi.ac.id/index.php/media-informatika/article/view/54/48.
 
 ## Business Understanding
 
 ### Problem Statements
-- Bagaimana membangun model machine learning untuk memprediksi kualitas udara berdasarkan parameter pencemar udara?
-- Algoritma apa yang paling efektif untuk memodelkan prediksi kualitas udara dengan akurasi tinggi?
+- Pendekatan rekomendasi apa yang paling sesuai untuk kondisi dengan atau tanpa informasi pengguna?
+- Bagaimana membangun sistem rekomendasi film yang dapat memberikan saran tontonan yang relevan untuk pengguna berdasarkan metadata film atau histori rating pengguna?
+- Bagaimana mengevaluasi performa model berdasarkan karakteristik dan keluaran masing-masing?
 
 ### Goals
-- Menghasilkan model prediktif yang mampu mengklasifikasikan kualitas udara dari data polutan yang tersedia.
-- Mengevaluasi dan membandingkan performa dua model machine learning dalam mengklasifikasi kualitas udara.
+- Mengembangkan dua pendekatan sistem rekomendasi, yaitu content-based filtering dan collaborative filtering.
+- Menunjukkan efektivitas setiap pendekatan berdasarkan contoh hasil rekomendasi.
+- Memberikan rekomendasi film yang sesuai dengan preferensi pengguna dan kesamaan konten film.
 
 ### Solution statements
-- Menggunakan dua algoritma, yaitu Content-based Filtering dan Collaborative Filtering.
+- Membangun model Content-Based Filtering dengan TF-IDF dan cosine similarity berdasarkan kolom genres untuk digunakan saat tidak ada data historis pengguna.
+- Membangun model Collaborative Filtering berbasis neural network untuk mempelajari preferensi pengguna dengan evaluasi mengguanakan Root Mean Square Error (RMSE).
+- Menggunakan contoh hasil rekomendasi aktual untuk membandingkan efektivitas kedua pendekatan.
 
 ## Data Understanding
 Data yang digunakan dalam proyek ini adalah "MovieLens Beliefs Dataset" yang berisi rekomendasi pengguna, rating, dan perkiraan rating yang diberikan user untuk film yang belum pernah ditonton. Dataset yang digunakan adalah movies.csv dan user_rating_history.csv.
@@ -61,19 +65,21 @@ Tipe Data Setiap Variabel
 - tstamp: string (object)
 
 ### Eksplorasi Data
-- Histogram Rating <br>
+- Top 20 Film dengan Rating Terbanyak <br>
 ![Top 20 Movies](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/top_20.png) <br>
-Gambar di atas merupakan histogram dari Rating.
+Gambar di atas merupakan bar chart mengenai top 20 film dengan rating terbanyak. Film yang memiliki rating terbanyak adalah The Shawshank Redemption. Dari top 20 film ini, rata-rata film memiliki rating di atas 3.5.
 - Rating Film <br>
 ![Average Rating by Genre](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/avg_rating.png) <br>
-Dari bar chart ini, dapat dilihat ...
+Gambar di atas merupakan bar chart mengenai rata-rata rating setiap genre. Genre yang paling banyak diminati orang adalah film dengan genre Film-Noir.
 
 ## Data Preparation
 Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation untuk kedua dataset yang dipakai.
 
 ### movies.csv
 - Menghapus data missing value (dropna())
-- Menghilangkan simbol "|" pada kolom genres sehingga setiap genre dipisah dengan menggunakan spasi saja <br>
+- Menghilangkan simbol "|" pada kolom genres sehingga setiap genre dipisah dengan menggunakan spasi saja
+- Data diproses menggunakan TfidVectorizer <br>
+
 
 **Alasan Tahapan Data Preparation**
 - 
