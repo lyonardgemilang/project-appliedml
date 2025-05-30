@@ -90,19 +90,22 @@ Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation untuk ke
 - Menghapus missing value pada data (dropna())
 - Menghapus data duplikat (drop_duplicates()) <br>
 
-**Alasan Tahapan Data Preparation**
+**Alasan Tahapan Data Preparation** <br>
 Data yang bersih dari missing value dan duplikat membuat data dapat dinormalisasi/embedding dan menghindari bias dalam pelatihan model.
 
 ### merge_df 
 merge_df merupakan data gabungan dari dataset movies dan user_rating_history. Dataset inin digabungkan menggunakan Left Join agar menjaga semua baris dari df_user yang ada meskipun filmnya tidak ditemukan. Berikut merupakan tahap data preparation untuk merge_df:
 - Menghapus missing value pada data(dropna())
 - Mengubah userId dan movieId menjadi angka integer
-- Menormalkan rating menjadi rentang 0-1 <br>
+- Menormalkan rating menjadi rentang 0-1
+- Menyusun pasangan fitur user, movie, dan label rating_norm dalam bentuk array
+- Membagi data menjadi data latih dan data validasi dengan rasio 80:20<br>
 
 **Alasan Tahapan Data Preparation**
 - Data yang bersih dari missing value akan tercegah dari error dan model dapat belajar dari data yang valid.
 - userId dan movieId yang diubah menjadi integer agar dapat dimasukkan ke dalam model embedding
 - Rating yang dinormalisasi agar sesuai dengan fungsi aktivasi sigmoid dalam model neural network
+- Pembagian data latih dan validasi penting untuk mengukur perfroma generalisasi model
 
 ## Modeling
 Terdapat dua model yang digunakan dalam proyek ini, yaitu Content-based filtering dan Collaborative Filtering.
