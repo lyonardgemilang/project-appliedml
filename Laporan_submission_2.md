@@ -5,9 +5,9 @@
 Platform streaming film menghadapi tantangan dalam memberikan rekomendasi yang sesuai bagi penggunanya. Dengan banyaknya film yang baru saat ini, banyak pengguna yang kebingungan dalam memilih film. Per 2018 angka jumlah penonton bioskop di Indonesia saja telah mencapai lebih dari 50 juta penonton dengan jumlah produksi film luar negeri hingga dalam negeri sebanyak hampir 200 judul film yang telah tayang di seluruh Indonesia (Fajriansyah et al., 2021). Memilih film memakan sangat banyak waktu, yang tentunya hal itu bahkan dapat membuat pengguna tidak jadi menonton. Hal itu tidak hanya merugikan penonton, tetapi perusahaan juga. 
 
 ### Alasan
-Masalah ini harus diatasi oleh platform streaming film agar pengguna tetap menggunakan platoform tersebut. Oleh karena itu, platform streaming film memerlukan sistem rekomendasi. Sistem  rekomendasi  merupakansistem  perangkat  lunak  yang  dapat  membuat rekomendasi  ataupun  membuat  saran  akan  item-item  yang  sesuai  kepada  pengguna,  item adalah  istilah  umum  yang  digunakan  untuk  menunjukkan  apa  yang  direkomendasikan sistem  kepada  pengguna  (Wiputra & Shandi, 2021). Dengan dibuat sistem rekomendasi, pengguna dapat memilih film yang ingin ditonton selanjutnya yang relevan dengan preferensinya. Sistem rekomendasi dapat dibuat dengan menggunakan pendekatan Content-based filtering dan juga Collaborative Filtering. Content Based Filtering menggunakan kemiripan antar produk yang akan direkomendasikan dengan produk yang disukai pengguna dan Collaborative Filtering menggunakan kemiripan kueri dengan item pengguna dengan pengguna lain (Fajriansyah et al., 2021).
+Masalah ini harus diatasi oleh platform streaming film agar pengguna tetap menggunakan platform tersebut. Oleh karena itu, platform streaming film memerlukan sistem rekomendasi. Sistem  rekomendasi  merupakan sistem  perangkat  lunak  yang  dapat  membuat rekomendasi  ataupun  membuat  saran  akan  item-item  yang  sesuai  kepada  pengguna,  item adalah  istilah  umum  yang  digunakan  untuk  menunjukkan  apa  yang  direkomendasikan sistem  kepada  pengguna  (Wiputra & Shandi, 2021). Dengan dibuat sistem rekomendasi, pengguna dapat memilih film yang ingin ditonton selanjutnya yang relevan dengan preferensinya. Sistem rekomendasi dapat dibuat dengan menggunakan pendekatan Content-based filtering dan juga Collaborative Filtering. Content Based Filtering menggunakan kemiripan antar produk yang akan direkomendasikan dengan produk yang disukai pengguna dan Collaborative Filtering menggunakan kemiripan kueri dengan item pengguna dengan pengguna lain (Fajriansyah et al., 2021).
 
-### Referensi:
+### Referensi
 Fajriansyah, Muhammad, et al. “Sistem Rekomendasi Film Menggunakan Content Based Filtering.” Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer, vol. 5, no. 6, 2021, http://j-ptiik.ub.ac.id/. <br>
 Wiputra, Michael Mahendra, and Yusup Jauhari Shandi. “PERANCANGAN SISTEM REKOMENDASI MENGGUNAKAN METODE COLLABORATIVE FILTERING DENGAN STUDI KASUS PERANCANGAN WEBSITE REKOMENDASI FILM.” Media Informatika, vol. 20, no. 1, 2021, https://journal.likmi.ac.id/index.php/media-informatika/article/view/54/48.
 
@@ -24,8 +24,8 @@ Wiputra, Michael Mahendra, and Yusup Jauhari Shandi. “PERANCANGAN SISTEM REKOM
 - Memberikan rekomendasi film yang sesuai dengan preferensi pengguna dan kesamaan konten film.
 
 ### Solution statements
-- Membangun model Content-Based Filtering dengan TF-IDF dan cosine similarity berdasarkan kolom genres untuk digunakan saat tidak ada data historis pengguna.
-- Membangun model Collaborative Filtering berbasis neural network untuk mempelajari preferensi pengguna dengan evaluasi mengguanakan Root Mean Square Error (RMSE).
+- Membangun model Content-Based Filtering dengan TF-IDF dan linear kernel berdasarkan kolom genres untuk digunakan saat tidak ada data historis pengguna.
+- Membangun model Collaborative Filtering berbasis neural network untuk mempelajari preferensi pengguna dengan evaluasi menggunakan Root Mean Square Error (RMSE).
 - Menggunakan contoh hasil rekomendasi aktual untuk membandingkan efektivitas kedua pendekatan.
 
 ## Data Understanding
@@ -91,13 +91,18 @@ Dalam pengerjaan proyek ini diterapkan beberapa teknik data preparation untuk ke
 - Menghapus data duplikat (drop_duplicates()) <br>
 
 **Alasan Tahapan Data Preparation**
-Data yang bersih dari missing value dan duplikat membuat data dapat dinormaliasi/embedding dan menghindari bias dalam pelatihan model.
+Data yang bersih dari missing value dan duplikat membuat data dapat dinormalisasi/embedding dan menghindari bias dalam pelatihan model.
 
-### merge_df (Gabungan movies dan user_rating_history)
-- Menghapus missing value pada data(dropna()) <br>
+### merge_df 
+merge_df merupakan data gabungan dari dataset movies dan user_rating_history. Dataset inin digabungkan menggunakan Left Join agar menjaga semua baris dari df_user yang ada meskipun filmnya tidak ditemukan. Berikut merupakan tahap data preparation untuk merge_df:
+- Menghapus missing value pada data(dropna())
+- Mengubah userId dan movieId menjadi angka integer
+- Menormalkan rating menjadi rentang 0-1 <br>
 
 **Alasan Tahapan Data Preparation**
-Data yang bersih dari missing value dan duplikat membuat data dapat dinormaliasi/embedding dan menghindari bias dalam pelatihan model.
+- Data yang bersih dari missing value akan tercegah dari error dan model dapat belajar dari data yang valid.
+- userId dan movieId yang diubah menjadi integer agar dapat dimasukkan ke dalam model embedding
+- Rating yang dinormalisasi agar sesuai dengan fungsi aktivasi sigmoid dalam model neural network
 
 ## Modeling
 Terdapat dua model yang digunakan dalam proyek ini, yaitu Content-based filtering dan Collaborative Filtering.
@@ -107,7 +112,7 @@ Metode yang digunakan adalah TfidfVectorizer dan linear_kernel. Model ini menghi
 
 #### Langkah Utama
 - Mengubah teks genres menjadi vektor menggunakan TfidfVectorizer.
-- Menghitung similarity matrix antar film menggunakan linear_kernel(). linear_kernel() digunakan karena lebih ringan dan efisien dan memberikan hasil yang cukup identik dengan cosine simlarity.
+- Menghitung similarity matrix antar film menggunakan linear_kernel(). linear_kernel() digunakan karena lebih ringan dan efisien dan memberikan hasil yang cukup identik dengan cosine similarity.
 - Mendefinisikan fungsi movie_rec() untuk mengambil k film paling mirip dengan film input.
 
 #### Kelebihan
@@ -138,7 +143,8 @@ Struktur model yang digunakan adalah embedding layer untuk user dan movie, dot p
 - Butuh banyak data agar embedding terlatih dengan baik
 
 ## Evaluation
-Hal yang diukur untuk model content-based filtering adalah nilai similarity dan untuk model collaborative based filtering digunakan metrik RMSE.
+Hal yang diukur untuk model content-based filtering adalah nilai similarity dan untuk model collaborative based filtering digunakan metrik Root Mean Square Error (RMSE). Berikut merupakan rumus RMSE: <br>
+$RMSE = \sqrt{\frac{\sum_{i=1}^{n} (P_i - O_i)^2}{n}}$
 
 ### Content Based Filtering
 ![Evaluation ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/eval_conbased.png) <br>
@@ -150,6 +156,6 @@ Dari gambar di atas, dapat dilihat bahwa performa train cukup stabil, hanya saja
 <br>
 
 ![ColBased Result](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/hasil_colbased.png) <br>
-Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating tertinggi yang diberikam user ada dari genre seperti Drama, Mystery, Thriller, Comedy, Horror, Action, Sci-fi, dan lain sebagainya. Lalu 10 film yang direkomendasikan oleh model rata-rata memiliki genre yang sama seperti movie dengan rating tertinggi yang diberikan user. Oleh karena itu, model yang dibuat ini cukup bagus dalam merekomendasikan film, hanya saja perlu dilakukan tuning kembali untuk output yang lebih optimal dan konsisten.
-
-Kesimpulannya, dari kedua model yang sudah dibuat, model terbaik yang akan dipilih adalah Random Forest karena model Random Forest memiliki performa yang lebih baik dibandingkan Logistic Regression dan model ini tidak lagi overfitting setelah tuning.
+Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating tertinggi yang diberikan user ada dari genre seperti Drama, Mystery, Thriller, Comedy, Horror, Action, Sci-fi, dan lain sebagainya. Lalu 10 film yang direkomendasikan oleh model rata-rata memiliki genre yang sama seperti movie dengan rating tertinggi yang diberikan user. Oleh karena itu, model yang dibuat ini cukup bagus dalam merekomendasikan film, hanya saja perlu dilakukan tuning kembali untuk output yang lebih optimal dan konsisten. <br>
+<br>
+Kesimpulannya, dari kedua model yang sudah dibuat, model content-based filtering berhasil memberikan rekomendasi yang relevan berdasarkan kemiripan genre film dan model collaborative-based filtering berhasil memberikan rekomendasi yang lebih personal berdasarkan pola perilaku pengguna. Kedua model ini memiliki kelebihan masing-masing tergantung pada ketersediaan data. Jika metadata film tersedia tetapi histori pengguna tidak ada, maka content-based filtering merupakan solusi yang tepat. Begitu juga sebaliknya, apabila data rating pengguna tersedia, collaborative rating mampu memberikan rekomendasi yang lebih akurat dan personal. 
