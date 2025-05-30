@@ -40,7 +40,7 @@ Dataset: <a href="https://grouplens.org/datasets/movielens/ml_belief_2024/">Movi
 - Terdapat missing value di kolom genres. <br>
 
 Variabel-variabel pada movies dataset adalah sebagai berikut:
-- movieId: ID untuk film
+- movieId: ID film
 - title: Judul film
 - genres: Genre film yang terdiri dari Action, Adventure, Animation, Children's, Comedy, Crime, Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, dan Western. <br>
 
