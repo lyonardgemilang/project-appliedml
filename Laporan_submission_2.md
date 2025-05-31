@@ -126,6 +126,9 @@ Metode yang digunakan adalah TfidfVectorizer dan linear_kernel. Model ini menghi
 - Tidak mempertimbangkan preferensi atau perilaku pengguna
 - Kurang efektif jika metadata terbatas atau seragam
 
+#### Output Top-N Rekomendasi (Top 5)
+![Evaluation ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/eval_conbased.png) <br>
+Dari fungsi yang sudah didefinisikan sebelumnya bahwa nilai K adalah 5, maka ditampilkan 5 film dengan nilai similarity (kesamaan) tertinggi. Dari gambar dapat dilihat bahwa semua film yang ditampilkan memiliki nilai similarity sebesar 1 yang menandakan bahwa 5 film tersebut serupa dengan film yang dicari (Tokyo Girls (2000)). Kelima film yang ditampilkan tersebut memiliki genre yang sama seperti film yang dicari, sehingga model ini dapat dikatakan bagus karena memberi rekomendasi yang sesuai.
 
 ### Collaborative Filtering
 Model yang digunakan adalah Neural Network berbasis user dan movie embedding dengan Tensorflow/Keras. <br>
@@ -145,20 +148,22 @@ Struktur model yang digunakan adalah embedding layer untuk user dan movie, dot p
 - Tidak dapat memberikan rekomendasi ke user baru tanpa riwayat
 - Butuh banyak data agar embedding terlatih dengan baik
 
+#### Output Top-N Rekomendasi (Top 10)
+![ColBased Result](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/hasil_colbased.png) <br>
+Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating tertinggi yang diberikan user ada dari genre seperti Drama, Mystery, Thriller, Comedy, Horror, Action, Sci-fi, dan lain sebagainya. Lalu 10 film yang direkomendasikan oleh model rata-rata memiliki genre yang sama seperti movie dengan rating tertinggi yang diberikan user. Oleh karena itu, model yang dibuat ini cukup bagus dalam merekomendasikan film, hanya saja perlu dilakukan tuning kembali untuk output yang lebih optimal dan konsisten. 
+
 ## Evaluation
 Hal yang diukur untuk model content-based filtering adalah nilai similarity dan untuk model collaborative based filtering digunakan metrik Root Mean Square Error (RMSE). Berikut merupakan rumus RMSE: <br>
 $RMSE = \sqrt{\frac{\sum_{i=1}^{n} (P_i - O_i)^2}{n}}$
 
 ### Content Based Filtering
-![Evaluation ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/eval_conbased.png) <br>
-Dari fungsi yang sudah didefinisikan sebelumnya bahwa nilai K adalah 5, maka ditampilkan 5 film dengan nilai similarity (kesamaan) tertinggi. Dari gambar dapat dilihat bahwa semua film yang ditampilkan memiliki nilai similarity sebesar 1 yang menandakan bahwa 5 film tersebut serupa dengan film yang dicari (Tokyo Girls (2000)). Kelima film yang ditampilkan tersebut memiliki genre yang sama seperti film yang dicari, sehingga model ini dapat dikatakan bagus karena memberi rekomendasi yang sesuai.
+Presisi
 
 ### Collaborative Based Filtering
 ![Evaluation ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/rmse.png) <br>
 Dari gambar di atas, dapat dilihat bahwa performa train cukup stabil, hanya saja validation RMSE sangat fluktuatif. Hal ini menunjukkan ketidakkonsistenan generalisasi model. Hal ini juga menunjukkan bahwa model sepertinya overfitting. <br>
-<br>
 
-![ColBased Result](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/hasil_colbased.png) <br>
-Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating tertinggi yang diberikan user ada dari genre seperti Drama, Mystery, Thriller, Comedy, Horror, Action, Sci-fi, dan lain sebagainya. Lalu 10 film yang direkomendasikan oleh model rata-rata memiliki genre yang sama seperti movie dengan rating tertinggi yang diberikan user. Oleh karena itu, model yang dibuat ini cukup bagus dalam merekomendasikan film, hanya saja perlu dilakukan tuning kembali untuk output yang lebih optimal dan konsisten. <br>
-<br>
+
+
+
 Kesimpulannya, dari kedua model yang sudah dibuat, model content-based filtering berhasil memberikan rekomendasi yang relevan berdasarkan kemiripan genre film dan model collaborative-based filtering berhasil memberikan rekomendasi yang lebih personal berdasarkan pola perilaku pengguna. Kedua model ini memiliki kelebihan masing-masing tergantung pada ketersediaan data. Jika metadata film tersedia tetapi histori pengguna tidak ada, maka content-based filtering merupakan solusi yang tepat. Begitu juga sebaliknya, apabila data rating pengguna tersedia, collaborative rating mampu memberikan rekomendasi yang lebih akurat dan personal. 
