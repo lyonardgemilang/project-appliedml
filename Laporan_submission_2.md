@@ -157,7 +157,7 @@ Struktur model yang digunakan adalah embedding layer untuk user dan movie, dot p
 - Butuh banyak data agar embedding terlatih dengan baik
 
 #### Output Top-N Rekomendasi (Top 10)
-![ColBased Result](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/hasil_colbased.png) <br>
+![ColBased Result](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/output_colbased.png) <br>
 Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating tertinggi yang diberikan user ada dari genre seperti Drama, Adventure, War, Crime, Horror, Film-Noir, dan Thriller. Lalu 10 film yang direkomendasikan oleh model rata-rata memiliki genre yang sama seperti movie dengan rating tertinggi yang diberikan user. Berikut merupakan 10 film rekomendasi teratas berdasarkan prediksi rating tertinggi untuk pengguna:
 1. Ruby in Paradise (1993) : Drama
 2. Glengarry Glen Ross (1992) : Drama
