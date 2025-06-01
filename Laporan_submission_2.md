@@ -174,10 +174,10 @@ Dari hasil yang dikeluarkan model dapat dilihat bahwa film dengan rating terting
 Hal yang diukur untuk model content-based filtering adalah presisi dan untuk model collaborative based filtering digunakan metrik Mean Absolute Error dan Root Mean Square Error (RMSE). 
 
 ### Content Based Filtering
-![Output ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/eval_conbased.png) <br>
-Dari gambar di atas dapat dilihat output top 10 film yang mirip dengan film yang dicari, yaitu Tokyo Girls (2000). Genre yang dimiliki oleh 10 film tersebut sama seperti film yang dicari. Oleh karena itu dengan menggunakan rumus presisi:
-![Output ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/recsys_precision.png) <br>
-didapat perhitungan <br>
+![Precision ConBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/prec_conbased.png) <br>
+Dari gambar di atas dapat dilihat output top 10 film yang mirip dengan film yang dicari, yaitu Tokyo Girls (2000). Genre yang dimiliki oleh 10 film tersebut sama seperti film yang dicari. Oleh karena itu dengan menggunakan rumus presisi: <br>
+![Prec Formula](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/recsys_precision.png) <br>
+didapat perhitungan sebagai berikut: <br>
 $Precision = \frac{10}{10} = 1.0$<br>
 Jadi, precision yang dihasilkan oleh metode ini adalah sebesar 100% yang menandakan bahwa model ini memberikan rekomendasi film dengan sangat tepat.
 
@@ -185,13 +185,13 @@ Jadi, precision yang dihasilkan oleh metode ini adalah sebesar 100% yang menanda
 #### MAE
 Mean Absolute Error (MAE) adalah metrik yang mengukur rata-rata selisih absolut antara nilai prediksi dan nilai sebenarnya. MAE lebih stabil terhadap outlier. Berikut merupakan rumus dari MAE: <br>
 $MAE = \frac{\sum_{i=1}^{n} \left| y_i - \lambda(x_i) \right|}{n}$ <br>
-![MAE ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/mae.png) <br>
+![MAE ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/MAE.png) <br>
 Dari gambar di atas, dapat dilihat bahwa MAE train dan test sama-sama menurun yang menandakan bahwa model belajar dengan baik dan bagus. Tidak ada tanda-tanda bahwa model mengalami overfitting juga. <br>
 
 #### RMSE
 Root Mean Square Error (RMSE) adalah metrik yang mengukur seberapa baik model prediktif mendekati nilai aktual. RMSE digunakan untuk mengevaluasi seberapa jauh kesalahan besar yang dibuat model. Berbeda dengan MAE yang stabil terhadap outlier, RMSE lebih sensitif terhadap outlier. Berikut merupakan rumus RMSE: <br>
 $RMSE = \sqrt{\frac{\sum_{i=1}^{n} (P_i - O_i)^2}{n}}$ <br>
-![RMSE ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/rmse.png) <br>
+![RMSE ColBased](https://raw.githubusercontent.com/lyonardgemilang/project-appliedml/picture/RMSE.png) <br>
 Dari gambar di atas, dapat dilihat bahwa RMSE train dan test menurun yang menandakan bahwa model berhasil mengurangi kesalahan prediksi. RMSE juga tidak terlihat meningkat sehingga model ini tidak mengalami overfitting. <br>
 
 ## Kesimpulan
